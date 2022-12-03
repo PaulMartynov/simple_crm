@@ -1,15 +1,15 @@
 <template>
   <div class="app-main-layout">
-    <NavBar @click="isOpen = !isOpen" />
+    <NavBar @toggle-side-menu="isOpen = !isOpen" />
     <SideBar :is-open="isOpen" />
     <main class="app-content" :class="{ full: !isOpen }">
       <router-view />
     </main>
 
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large blue" href="#">
+      <router-link class="btn-floating btn-large blue" to="/record">
         <i class="large material-icons">add</i>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
