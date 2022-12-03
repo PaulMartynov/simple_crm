@@ -1,10 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <component :is="layout">
+    <router-view/>
+  </component>
 </template>
+
+<script>
+import EmptyLayout from '@/layouts/EmptyLayout.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
+
+export default {
+  components: { EmptyLayout, MainLayout },
+  computed: {
+    layout() {
+      return `${this.$route.meta.layout || 'empty'}-layout`;
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 @import "~materialize-css/dist/css/materialize.min.css";

@@ -12,27 +12,23 @@
             </div>
 
             <form>
-              <div class="input-field">
-                <label for="create-name">
-                  <input
-                    id="create-name"
-                    type="text"
-                  >
-                  Название
-                </label>
+              <label for="create-name" class="input-field">
+                Название
+                <input
+                  id="create-name"
+                  type="text"
+                >
                 <span class="helper-text invalid">Введите название</span>
-              </div>
+              </label>
 
-              <div class="input-field">
-                <label for="create-limit">
-                  <input
-                    id="create-limit"
-                    type="number"
-                  >
-                  Лимит
-                </label>
+              <label for="create-limit" class="input-field">
+                Лимит
+                <input
+                  id="create-limit"
+                  type="number"
+                >
                 <span class="helper-text invalid">Минимальная величина</span>
-              </div>
+              </label>
 
               <button class="btn waves-effect waves-light" type="submit">
                 Создать
@@ -48,33 +44,27 @@
             </div>
 
             <form>
-              <div class="input-field" >
-                <label for="categories">
-                  <select id="categories">
-                    <option>Category</option>
-                  </select>
-                  Выберите категорию
-                </label>
-              </div>
+              <label for="categories" class="input-field" >
+                <select id="categories">
+                  <option>Category</option>
+                </select>
+                Выберите категорию
+              </label>
 
-              <div class="input-field">
-                <label for="update-name">
-                  <input type="text" id="update-name">
-                  Название
-                </label>
+              <label for="update-name" class="input-field">
+                Название
+                <input type="text" id="update-name">
                 <span class="helper-text invalid">TITLE</span>
-              </div>
+              </label>
 
-              <div class="input-field">
-                <label for="update-limit">
-                  <input
-                    id="update-limit"
-                    type="number"
-                  >
-                  Лимит
-                </label>
+              <label for="update-limit" class="input-field">
+                Лимит
+                <input
+                  id="update-limit"
+                  type="number"
+                >
                 <span class="helper-text invalid">LIMIT</span>
-              </div>
+              </label>
 
               <button class="btn waves-effect waves-light" type="submit">
                 Обновить
