@@ -2,9 +2,9 @@
   <nav class="navbar orange lighten-1">
     <div class="nav-wrapper">
       <div class="navbar-left">
-        <router-link to="/">
+        <a href="#" @click.prevent="$emit('toggle-side-menu')">
           <i class="material-icons black-text">dehaze</i>
-        </router-link>
+        </a>
         <span class="black-text">12.12.12</span>
       </div>
 

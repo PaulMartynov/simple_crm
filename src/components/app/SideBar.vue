@@ -1,23 +1,30 @@
 <template>
-  <ul class="sidenav app-sidenav open">
-    <li>
-      <router-link to="/" class="waves-effect waves-orange pointer">Счет</router-link>
-    </li>
-    <li>
-      <router-link to="/history" class="waves-effect waves-orange pointer">История</router-link>
-    </li>
-    <li>
-      <router-link to="/planning" class="waves-effect waves-orange pointer">
-        Планирование
-      </router-link>
-    </li>
-    <li>
-      <router-link to="/record" class="waves-effect waves-orange pointer">Новая запись</router-link>
-    </li>
-    <li>
-      <router-link to="/categories" class="waves-effect waves-orange pointer">
-        Категории
-      </router-link>
-    </li>
+  <ul class="sidenav app-sidenav" :class="{ open: isOpen }">
+    <router-link
+      v-for="link in links"
+      :key="link.url"
+      :to="link.url"
+      active-class="active"
+      :exact="link.exact"
+    >
+      <li>
+        <a href="#" class="waves-effect waves-orange pointer">{{ link.title }}</a>
+      </li>
+    </router-link>
   </ul>
 </template>
+
+<script lang="ts">
+export default {
+  props: ['isOpen'],
+  data: () => ({
+    links: [
+      { title: 'Счет', url: '/', exact: true },
+      { title: 'История', url: '/history', exact: false },
+      { title: 'Планирование', url: '/planning', exact: false },
+      { title: 'Новая запись', url: '/record', exact: false },
+      { title: 'Категории', url: '/categories', exact: false },
+    ],
+  }),
+};
+</script>
