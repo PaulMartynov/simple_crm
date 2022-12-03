@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card">
+  <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <label for="email" class="input-field">
@@ -8,16 +8,25 @@
           id="email"
           type="text"
           class="validate"
+          v-model.trim="email"
+          :class="{ invalid: v$.email.$error }"
         >
-        <small class="helper-text invalid">Email</small>
+        <small v-show="v$.email.$error" class="helper-text invalid">
+          Некорректный email
+        </small>
       </label>
       <label for="password" class="input-field">
+        Пароль
         <input
           id="password"
           type="password"
           class="validate"
+          v-model="password"
+          :class="{ invalid: v$.password.$error }"
         >
-        <small class="helper-text invalid">Password</small>
+        <small v-show="v$.password.$error" class="helper-text invalid">
+          {{ `Пароль должен быть не менее ${v$.password.minLength.$params.min} символов` }}
+        </small>
       </label>
     </div>
     <div class="card-action">
@@ -33,16 +42,40 @@
 
       <p class="center">
         Нет аккаунта?
-        <a href="/">Зарегистрироваться</a>
+        <router-link to="/register">Зарегистрироваться</router-link>
       </p>
     </div>
   </form>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, minLength } from '@vuelidate/validators';
+
+export default defineComponent({
   name: 'LoginView',
-};
+  data: () => ({
+    v$: useVuelidate(),
+    email: '',
+    password: '',
+  }),
+  methods: {
+    async submitHandler() {
+      const isFormCorrect = await this.v$.$validate();
+      console.log(this.v$.email);
+      if (isFormCorrect) {
+        this.$router.push('/');
+      }
+    },
+  },
+  validations() {
+    return {
+      email: { required, email },
+      password: { required, minLength: minLength(6) },
+    };
+  },
+});
 </script>
 
 <style scoped>
