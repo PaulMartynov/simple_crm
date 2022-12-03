@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="page-title">
       <h3>Новая запись</h3>
     </div>
