@@ -52,6 +52,7 @@
 import { defineComponent } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength } from '@vuelidate/validators';
+import messages from '@/common/messages';
 
 export default defineComponent({
   name: 'LoginView',
@@ -60,10 +61,18 @@ export default defineComponent({
     email: '',
     password: '',
   }),
+  mounted() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (messages[this.$route.query.message]) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      this.$message(messages[this.$route.query.message]);
+    }
+  },
   methods: {
     async submitHandler() {
       const isFormCorrect = await this.v$.$validate();
-      console.log(this.v$.email);
       if (isFormCorrect) {
         this.$router.push('/');
       }
@@ -77,7 +86,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-
-</style>

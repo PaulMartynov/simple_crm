@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import dateFilter from '@/filters/date.filter.js';
+import MessagePlugin from '@/common/message.plugin';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -10,4 +11,4 @@ const app = createApp(App);
 app.config.globalProperties.$filters = {
   date: dateFilter,
 };
-app.use(store).use(router).mount('#app');
+app.use(store).use(router).use(MessagePlugin).mount('#app');
