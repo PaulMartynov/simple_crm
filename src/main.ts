@@ -1,5 +1,5 @@
 import { createApp, App } from 'vue';
-import firebase from '@/api/firebase/firebase';
+import { auth } from '@/api/firebase/firebase';
 import dateFilter from '@/filters/date.filter.js';
 import MessagePlugin from '@/common/message.plugin';
 import vueApp from './App.vue';
@@ -9,7 +9,7 @@ import './registerServiceWorker';
 import 'materialize-css/dist/js/materialize.min';
 
 let app: App<Element>;
-firebase.auth.onAuthStateChanged(() => {
+auth.onAuthStateChanged(() => {
   if (app) {
     return;
   }
