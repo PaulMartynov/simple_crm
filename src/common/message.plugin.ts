@@ -6,7 +6,7 @@ export default {
       // @ts-ignore
       M.toast({ html });
     };
-    app.config.globalProperties.error = (html: string) => {
+    app.config.globalProperties.$error = (html: string) => {
       // @ts-ignore
       M.toast({ html: `[Ошибка]: ${html}` });
     };

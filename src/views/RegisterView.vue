@@ -82,7 +82,17 @@ export default defineComponent({
     async submitHandler() {
       const isFormCorrect = await this.v$.$validate();
       if (isFormCorrect) {
-        this.$router.push('/');
+        const formData = {
+          email: this.email,
+          password: this.password,
+          name: this.name,
+        };
+        try {
+          await this.$store.dispatch('registerOnServer', formData);
+          this.$router.push('/');
+        } catch (e) {
+          this.$error(`${e}`);
+        }
       }
     },
   },

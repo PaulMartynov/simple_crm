@@ -62,19 +62,24 @@ export default defineComponent({
     password: '',
   }),
   mounted() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (messages[this.$route.query.message]) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      this.$message(messages[this.$route.query.message]);
+    if (messages[this.$route.query.message as string]) {
+      this.$message(messages[this.$route.query.message as string]);
     }
   },
   methods: {
     async submitHandler() {
       const isFormCorrect = await this.v$.$validate();
       if (isFormCorrect) {
-        this.$router.push('/');
+        const formData = {
+          email: this.email,
+          password: this.password,
+        };
+        try {
+          await this.$store.dispatch('loginOnServer', formData);
+          this.$router.push('/');
+        } catch (e) {
+          this.$error(`${e}`);
+        }
       }
     },
   },
