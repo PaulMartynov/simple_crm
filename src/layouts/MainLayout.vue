@@ -3,7 +3,9 @@
     <NavBar @toggle-side-menu="isOpen = !isOpen" />
     <SideBar :is-open="isOpen" />
     <main class="app-content" :class="{ full: !isOpen }">
-      <router-view />
+      <div class="app-page">
+        <router-view />
+      </div>
     </main>
 
     <div class="fixed-action-btn">
@@ -17,6 +19,7 @@
 <script lang="ts">
 import NavBar from '@/components/app/NavBar.vue';
 import SideBar from '@/components/app/SideBar.vue';
+import errorMessageMixin from '@/common/error.message.mixin';
 
 export default {
   data: () => ({
@@ -27,5 +30,6 @@ export default {
     NavBar,
     SideBar,
   },
+  mixins: [errorMessageMixin],
 };
 </script>
