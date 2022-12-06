@@ -91,7 +91,7 @@ export default defineComponent({
           await this.$store.dispatch('registerOnServer', formData);
           this.$router.push('/');
         } catch (e) {
-          this.$error(`${e}`);
+          // this.$error(`${e}`);
         }
       }
     },

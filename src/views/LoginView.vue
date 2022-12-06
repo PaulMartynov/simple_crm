@@ -78,7 +78,7 @@ export default defineComponent({
           await this.$store.dispatch('loginOnServer', formData);
           this.$router.push('/');
         } catch (e) {
-          this.$error(`${e}`);
+          // this.$error(`${e}`);
         }
       }
     },

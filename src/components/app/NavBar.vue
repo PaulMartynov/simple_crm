@@ -52,7 +52,7 @@ export default {
         await this.$store.dispatch('logoutFromServer');
         this.$router.push('/login?message=logout');
       } catch (e) {
-        this.$error(e);
+        // this.$error(e);
       }
     },
   },
