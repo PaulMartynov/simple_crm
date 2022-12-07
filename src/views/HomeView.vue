@@ -33,7 +33,7 @@ export default defineComponent({
         const data = await this.$store.dispatch('fetchRates');
         console.log(data);
       } catch (e) {
-        this.$error(`${e}`);
+        this.$error(`${e}`.replace('Error:', ''));
       } finally {
         this.isLoading = false;
       }

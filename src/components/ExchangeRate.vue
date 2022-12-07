@@ -5,7 +5,7 @@
         <div class="card-header">
           <span class="card-title">Курс валют</span>
         </div>
-        <table>
+        <table v-if="currency">
           <thead>
           <tr>
             <th>Валюта</th>
@@ -22,7 +22,16 @@
           </tr>
           </tbody>
         </table>
+        <div class="row" style="width: 100%; text-align: center; margin-top: 100px" v-else>
+          <h6>НЕТ ДАННЫХ</h6>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['currency'],
+};
+</script>
