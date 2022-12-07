@@ -1,6 +1,6 @@
 <template>
   <div class="app-main-layout">
-    <NavBar @toggle-side-menu="isOpen = !isOpen" />
+    <NavBar @toggle-side-menu="isOpen = !isOpen" :username="info?.name" />
     <SideBar :is-open="isOpen" />
     <main class="app-content" :class="{ full: !isOpen }">
       <div class="app-page">
@@ -17,11 +17,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import NavBar from '@/components/app/NavBar.vue';
 import SideBar from '@/components/app/SideBar.vue';
 import errorMessageMixin from '@/common/error.message.mixin';
 
-export default {
+export default defineComponent({
   data: () => ({
     isOpen: true,
   }),
@@ -30,6 +31,16 @@ export default {
     NavBar,
     SideBar,
   },
+  computed: {
+    info() {
+      return this.$store.getters.info;
+    },
+  },
+  mounted() {
+    if (!this.info) {
+      this.$store.dispatch('fetchUserInfo');
+    }
+  },
   mixins: [errorMessageMixin],
-};
+});
 </script>

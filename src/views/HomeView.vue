@@ -3,50 +3,49 @@
     <div class="page-title">
       <h3>Счет</h3>
 
-      <button class="btn waves-effect waves-light btn-small">
+      <button class="btn waves-effect waves-light btn-small" @click="getRates">
         <i class="material-icons">refresh</i>
       </button>
     </div>
 
-    <div class="row">
-      <div class="col s12 m6 l4">
-        <div class="card light-blue bill-card">
-          <div class="card-content white-text">
-            <span class="card-title">Счет в валюте</span>
-
-            <p class="currency-line">
-              <span>12.0 Р</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6 l8">
-        <div class="card orange darken-3 bill-card">
-          <div class="card-content white-text">
-            <div class="card-header">
-              <span class="card-title">Курс валют</span>
-            </div>
-            <table>
-              <thead>
-              <tr>
-                <th>Валюта</th>
-                <th>Курс</th>
-                <th>Дата</th>
-              </tr>
-              </thead>
-
-              <tbody>
-              <tr>
-                <td>руб</td>
-                <td>12121</td>
-                <td>12.12.12</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <app-loader v-if="isLoading" />
+    <div v-else class="row">
+      <UserBill :bill="info?.bill" />
+      <ExchangeRate />
     </div>
   </div>
 </template>
+<script>
+import { defineComponent } from 'vue';
+import UserBill from '@/components/UserBill.vue';
+import ExchangeRate from '@/components/ExchangeRate.vue';
+
+export default defineComponent({
+  components: { ExchangeRate, UserBill },
+  data: () => ({
+    isLoading: true,
+    currency: null,
+  }),
+  methods: {
+    async getRates() {
+      this.isLoading = true;
+      try {
+        const data = await this.$store.dispatch('fetchRates');
+        console.log(data);
+      } catch (e) {
+        this.$error(`${e}`);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
+  computed: {
+    info() {
+      return this.$store.getters.info;
+    },
+  },
+  async mounted() {
+    await this.getRates();
+  },
+});
+</script>

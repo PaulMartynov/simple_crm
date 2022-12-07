@@ -1,12 +1,12 @@
 import { auth, database } from '@/api/firebase/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
-import { VuexAction } from '@/types/vuex-type.d';
+import { VuexAction } from '@/types/vuex-type';
 
 export default {
   actions: {
     async loginOnServer(
-      { dispatch, commit }: VuexAction,
+      { commit }: VuexAction,
       { email, password }: LoginData,
     ) {
       try {
@@ -34,9 +34,10 @@ export default {
     getUserId() {
       return auth.currentUser?.uid ?? null;
     },
-    async logoutFromServer({ dispatch, commit }: VuexAction) {
+    async logoutFromServer({ commit }: VuexAction) {
       try {
         await signOut(auth);
+        commit('clearInfo');
       } catch (err: any) {
         commit('setError', err);
         throw new Error(err.code);

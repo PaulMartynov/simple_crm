@@ -16,7 +16,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            USER NAME
+            {{ username ?? "" }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -41,6 +41,11 @@
 
 <script>
 export default {
+  props: {
+    username: {
+      type: String,
+    },
+  },
   data: () => ({
     date: new Date(),
     interval: null,
@@ -61,7 +66,7 @@ export default {
       this.date = new Date();
     }, 1000);
     // eslint-disable-next-line no-undef
-    this.dropdown = M.Dropdown.init(this.$refs.dropdown, { constrainWidth: true });
+    this.dropdown = M.Dropdown.init(this.$refs.dropdown, { constrainWidth: false });
   },
   beforeUnmount() {
     clearInterval(this.interval);
