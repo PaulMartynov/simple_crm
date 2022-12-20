@@ -51,7 +51,7 @@ import { defineComponent } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minValue } from "@vuelidate/validators";
 
-export default {
+export default defineComponent({
   name: "UpdateCategoryForm",
   data: () => ({
     v$: useVuelidate(),
@@ -75,5 +75,10 @@ export default {
       limit: { minValue: minValue(1) },
     };
   },
-};
+  computed: {
+    categories() {
+      return this.$store.getters.categories;
+    },
+  },
+});
 </script>
