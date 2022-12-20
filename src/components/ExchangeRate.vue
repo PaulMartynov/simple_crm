@@ -16,9 +16,9 @@
 
           <tbody>
             <tr>
-              <td>руб</td>
-              <td>12121</td>
-              <td>12.12.12</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
             </tr>
           </tbody>
         </table>

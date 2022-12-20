@@ -13,3 +13,7 @@ export type UserInfo = {
 export type UserStateInfo = {
   info: UserInfo | null;
 };
+
+export type CategoryState = {
+  categories: Category[];
+};
