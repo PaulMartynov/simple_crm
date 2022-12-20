@@ -5,22 +5,17 @@
         <a href="#" @click.prevent="$emit('toggle-side-menu')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{ $filters.date(date, 'datetime') }}</span>
+        <span class="black-text">{{ $filters.date(date, "datetime") }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
         <li>
-          <a
-            class="dropdown-trigger black-text"
-            href="#"
-            data-target="dropdown"
-            ref="dropdown"
-          >
+          <a class="dropdown-trigger black-text" href="#" data-target="dropdown" ref="dropdown">
             {{ username ?? "" }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
-          <ul id='dropdown' class='dropdown-content'>
+          <ul id="dropdown" class="dropdown-content">
             <li>
               <router-link to="/profile" class="black-text">
                 <i class="material-icons">account_circle</i>Профиль
@@ -54,8 +49,8 @@ export default {
   methods: {
     async logout() {
       try {
-        await this.$store.dispatch('logoutFromServer');
-        this.$router.push('/login?message=logout');
+        await this.$store.dispatch("logoutFromServer");
+        this.$router.push("/login?message=logout");
       } catch (e) {
         // this.$error(e);
       }

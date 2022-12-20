@@ -10,10 +10,8 @@
           class="validate"
           v-model.trim="email"
           :class="{ invalid: v$.email.$error }"
-        >
-        <small v-show="v$.email.$error" class="helper-text invalid">
-          Некорректный email
-        </small>
+        />
+        <small v-show="v$.email.$error" class="helper-text invalid"> Некорректный email </small>
       </label>
       <label for="password" class="input-field">
         Пароль
@@ -23,7 +21,7 @@
           class="validate"
           v-model="password"
           :class="{ invalid: v$.password.$error }"
-        >
+        />
         <small v-show="v$.password.$error" class="helper-text invalid">
           {{ `Пароль должен быть не менее ${v$.password.minLength.$params.min} символов` }}
         </small>
@@ -31,10 +29,7 @@
     </div>
     <div class="card-action">
       <div>
-        <button
-          class="btn waves-effect waves-light auth-submit"
-          type="submit"
-        >
+        <button class="btn waves-effect waves-light auth-submit" type="submit">
           Войти
           <i class="material-icons right">send</i>
         </button>
@@ -49,17 +44,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useVuelidate } from '@vuelidate/core';
-import { required, email, minLength } from '@vuelidate/validators';
-import messages from '@/common/messages';
+import { defineComponent } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
+import messages from "@/common/messages";
 
 export default defineComponent({
-  name: 'LoginView',
+  name: "LoginView",
   data: () => ({
     v$: useVuelidate(),
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   }),
   mounted() {
     if (messages[this.$route.query.message as string]) {
@@ -75,8 +70,8 @@ export default defineComponent({
           password: this.password,
         };
         try {
-          await this.$store.dispatch('loginOnServer', formData);
-          this.$router.push('/');
+          await this.$store.dispatch("loginOnServer", formData);
+          this.$router.push("/");
         } catch (e) {
           // this.$error(`${e}`);
         }

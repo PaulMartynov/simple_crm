@@ -1,6 +1,6 @@
-import Store from '@/store/index';// path to store file
+import Store from "@/store/index"; // path to store file
 
-declare module '@vue/runtime-core' {
+declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
     $store: Store;
     $message: (html: string) => void;

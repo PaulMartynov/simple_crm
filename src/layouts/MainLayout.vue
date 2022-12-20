@@ -17,16 +17,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import NavBar from '@/components/app/NavBar.vue';
-import SideBar from '@/components/app/SideBar.vue';
-import errorMessageMixin from '@/common/error.message.mixin';
+import { defineComponent } from "vue";
+import NavBar from "@/components/app/NavBar.vue";
+import SideBar from "@/components/app/SideBar.vue";
+import errorMessageMixin from "@/common/error.message.mixin";
 
 export default defineComponent({
   data: () => ({
     isOpen: true,
   }),
-  name: 'main-layout',
+  name: "main-layout",
   components: {
     NavBar,
     SideBar,
@@ -38,7 +38,7 @@ export default defineComponent({
   },
   mounted() {
     if (!this.info) {
-      this.$store.dispatch('fetchUserInfo');
+      this.$store.dispatch("fetchUserInfo");
     }
   },
   mixins: [errorMessageMixin],

@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue';
-import messages from '@/common/messages';
+import { defineComponent } from "vue";
+import messages from "@/common/messages";
 
 export default defineComponent({
   computed: {

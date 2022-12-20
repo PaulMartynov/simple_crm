@@ -5,7 +5,7 @@
         <span class="card-title">Счет в валюте</span>
 
         <p class="currency-line">
-          <span>{{ bill ? `${bill.toFixed(2)} ₽` : '0.00 ₽' }}</span>
+          <span>{{ bill ? `${bill.toFixed(2)} ₽` : "0.00 ₽" }}</span>
         </p>
       </div>
     </div>

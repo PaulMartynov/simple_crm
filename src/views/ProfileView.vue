@@ -7,12 +7,8 @@
     <form class="form">
       <label for="description" class="input-field">
         Имя
-        <input
-          id="description"
-          type="text"
-        >
-        <span
-          class="helper-text invalid">name</span>
+        <input id="description" type="text" />
+        <span class="helper-text invalid">name</span>
       </label>
 
       <button class="btn waves-effect waves-light" type="submit">

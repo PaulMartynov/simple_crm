@@ -14,19 +14,13 @@
             <form>
               <label for="create-name" class="input-field">
                 Название
-                <input
-                  id="create-name"
-                  type="text"
-                >
+                <input id="create-name" type="text" />
                 <span class="helper-text invalid">Введите название</span>
               </label>
 
               <label for="create-limit" class="input-field">
                 Лимит
-                <input
-                  id="create-limit"
-                  type="number"
-                >
+                <input id="create-limit" type="number" />
                 <span class="helper-text invalid">Минимальная величина</span>
               </label>
 
@@ -44,7 +38,7 @@
             </div>
 
             <form>
-              <label for="categories" class="input-field" >
+              <label for="categories" class="input-field">
                 <select id="categories">
                   <option>Category</option>
                 </select>
@@ -53,16 +47,13 @@
 
               <label for="update-name" class="input-field">
                 Название
-                <input type="text" id="update-name">
+                <input type="text" id="update-name" />
                 <span class="helper-text invalid">TITLE</span>
               </label>
 
               <label for="update-limit" class="input-field">
                 Лимит
-                <input
-                  id="update-limit"
-                  type="number"
-                >
+                <input id="update-limit" type="number" />
                 <span class="helper-text invalid">LIMIT</span>
               </label>
 

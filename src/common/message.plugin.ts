@@ -1,4 +1,4 @@
-import { App } from 'vue';
+import { App } from "vue";
 /* eslint-disable */
 export default {
   install: (app: App<Element>, options: any) => {

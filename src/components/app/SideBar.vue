@@ -16,14 +16,14 @@
 
 <script lang="ts">
 export default {
-  props: ['isOpen'],
+  props: ["isOpen"],
   data: () => ({
     links: [
-      { title: 'Счет', url: '/', exact: true },
-      { title: 'История', url: '/history', exact: false },
-      { title: 'Планирование', url: '/planning', exact: false },
-      { title: 'Новая запись', url: '/record', exact: false },
-      { title: 'Категории', url: '/categories', exact: false },
+      { title: "Счет", url: "/", exact: true },
+      { title: "История", url: "/history", exact: false },
+      { title: "Планирование", url: "/planning", exact: false },
+      { title: "Новая запись", url: "/record", exact: false },
+      { title: "Категории", url: "/categories", exact: false },
     ],
   }),
 };
