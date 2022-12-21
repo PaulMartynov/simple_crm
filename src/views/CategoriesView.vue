@@ -5,8 +5,13 @@
     </div>
     <section>
       <div class="row">
-        <CreateCategoryForm />
-        <UpdateCategoryForm />
+        <CreateCategoryForm :categories="categories" />
+        <UpdateCategoryForm
+          v-if="categories.length"
+          :categories="categories"
+          :key="categories.length + updatedCount"
+          @updateCategory="updateCount"
+        />
       </div>
     </section>
   </div>
@@ -17,5 +22,18 @@ import UpdateCategoryForm from "@/components/UpdateCategoryForm.vue";
 
 export default {
   components: { UpdateCategoryForm, CreateCategoryForm },
+  data: () => ({
+    updatedCount: 0,
+  }),
+  methods: {
+    updateCount() {
+      this.updatedCount += 1;
+    },
+  },
+  computed: {
+    categories() {
+      return this.$store.getters.categories;
+    },
+  },
 };
 </script>

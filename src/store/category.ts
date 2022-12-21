@@ -1,5 +1,5 @@
 import { CategoryState, VuexAction } from "@/types/vuex-type";
-import { ref, push, get } from "firebase/database";
+import { ref, push, get, child, update } from "firebase/database";
 import { database } from "@/api/firebase/firebase";
 
 export default {
@@ -45,6 +45,19 @@ export default {
         throw new Error(err.code);
       }
     },
+    async updateCategory({ commit, dispatch }: VuexAction, { id, title, limit }: Category) {
+      try {
+        const userID = await dispatch("getUserId");
+        if (!userID) {
+          return;
+        }
+        await update(child(ref(database, `/users/${userID}/categories`), id), { title, limit });
+        await dispatch("fetchCategories");
+      } catch (err: any) {
+        commit("setError", err);
+        throw new Error(err.code);
+      }
+    },
   },
   mutations: {
     addCategory(state: CategoryState, category: Category) {
@@ -55,6 +68,6 @@ export default {
     },
   },
   getters: {
-    categories: (state: CategoryState) => state.categories,
+    categories: (state: CategoryState): Category[] => state.categories,
   },
 };

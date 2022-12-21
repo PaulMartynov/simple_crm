@@ -7,10 +7,12 @@
 
       <form>
         <label for="categories-select" class="input-field">
-          <select id="categories-select">
-            <option>Category</option>
-          </select>
           Выберите категорию
+          <select id="categories-select" ref="categoriesSelect" v-model="currentCat">
+            <option v-for="category in categories" :key="category.id" :value="category.id">
+              {{ category.title }}
+            </option>
+          </select>
         </label>
 
         <label for="update-name" class="input-field">
@@ -53,32 +55,72 @@ import { required, minValue } from "@vuelidate/validators";
 
 export default defineComponent({
   name: "UpdateCategoryForm",
+  props: { categories: { type: Array, required } },
   data: () => ({
     v$: useVuelidate(),
     categoryName: "",
     limit: 1,
+    select: null,
+    currentCat: null,
   }),
   methods: {
     async submitHandler() {
       const isFormCorrect = await this.v$.$validate();
-      if (isFormCorrect) {
-        const formData = {
-          title: this.categoryName,
-          limit: this.limit,
-        };
+      if (!isFormCorrect) {
+        return;
+      }
+      const category = this.categories.find(
+        (c) => c.title.toLowerCase() === this.categoryName.toLowerCase() && this.currentCat !== c.id
+      );
+      if (category) {
+        this.$error("Такая категория уже существует");
+        return;
+      }
+      const formData = {
+        title: this.categoryName,
+        limit: this.limit,
+        id: this.currentCat,
+      };
+      try {
+        await this.$store.dispatch("updateCategory", formData);
+        this.v$.$reset();
+        this.$message("Категория обновлена!");
+        this.$emit("updateCategory");
+      } catch (e) {
+        //
       }
     },
+  },
+  watch: {
+    currentCat(value) {
+      const category = this.categories.find((c) => c.id === value);
+      if (category) {
+        this.categoryName = category.title;
+        this.limit = category.limit;
+      }
+    },
+  },
+  created() {
+    if (this.categories[0]) {
+      this.categoryName = this.categories[0].title;
+      this.limit = this.categories[0].limit;
+      this.currentCat = this.categories[0].id;
+    }
+  },
+  mounted() {
+    // eslint-disable-next-line no-undef
+    this.select = M.FormSelect.init(this.$refs.categoriesSelect, {});
+  },
+  beforeUnmount() {
+    if (this.select && this.select.destroy) {
+      this.select.destroy();
+    }
   },
   validations() {
     return {
       categoryName: { required },
       limit: { minValue: minValue(1) },
     };
-  },
-  computed: {
-    categories() {
-      return this.$store.getters.categories;
-    },
   },
 });
 </script>

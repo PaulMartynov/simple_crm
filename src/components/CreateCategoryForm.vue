@@ -46,6 +46,7 @@ import { required, minValue } from "@vuelidate/validators";
 
 export default defineComponent({
   name: "CreateCategoryForm",
+  props: { categories: { type: Array, required } },
   data: () => ({
     v$: useVuelidate(),
     categoryName: "",
@@ -55,6 +56,13 @@ export default defineComponent({
     async submitHandler() {
       const isFormCorrect = await this.v$.$validate();
       if (!isFormCorrect) {
+        return;
+      }
+      const category = this.categories.find(
+        (c) => c.title.toLowerCase() === this.categoryName.toLowerCase()
+      );
+      if (category) {
+        this.$error("Такая категория уже существует");
         return;
       }
       try {
