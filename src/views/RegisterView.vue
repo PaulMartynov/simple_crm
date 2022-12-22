@@ -4,12 +4,7 @@
       <span class="card-title">Домашняя бухгалтерия</span>
       <label for="email" class="input-field">
         Email
-        <input
-          id="email"
-          type="text"
-          v-model.trim="email"
-          :class="{ invalid: v$.email.$error }"
-        >
+        <input id="email" type="text" v-model.trim="email" :class="{ invalid: v$.email.$error }" />
         <small v-if="v$.email.$error" class="helper-text invalid">Некорректный email</small>
       </label>
       <label for="password" class="input-field">
@@ -20,7 +15,7 @@
           class="validate"
           v-model.trim="password"
           :class="{ invalid: v$.password.$error }"
-        >
+        />
         <small v-show="v$.password.$error" class="helper-text invalid">
           {{ `Пароль должен быть не менее ${v$.password.minLength.$params.min} символов` }}
         </small>
@@ -33,7 +28,7 @@
           class="validate"
           v-model.trim="name"
           :class="{ invalid: v$.name.$error }"
-        >
+        />
         <small v-if="v$.name.$error" class="helper-text invalid">
           Это поле не должно быть пустым
         </small>
@@ -47,10 +42,7 @@
     </div>
     <div class="card-action">
       <div>
-        <button
-          class="btn waves-effect waves-light auth-submit"
-          type="submit"
-        >
+        <button class="btn waves-effect waves-light auth-submit" type="submit">
           Зарегистрироваться
           <i class="material-icons right">send</i>
         </button>
@@ -65,17 +57,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useVuelidate } from '@vuelidate/core';
-import { required, email, minLength } from '@vuelidate/validators';
+import { defineComponent } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
 
 export default defineComponent({
-  name: 'RegisterView',
+  name: "RegisterView",
   data: () => ({
     v$: useVuelidate(),
-    email: '',
-    password: '',
-    name: '',
+    email: "",
+    password: "",
+    name: "",
     agree: false,
   }),
   methods: {
@@ -88,8 +80,8 @@ export default defineComponent({
           name: this.name,
         };
         try {
-          await this.$store.dispatch('registerOnServer', formData);
-          this.$router.push('/');
+          await this.$store.dispatch("registerOnServer", formData);
+          this.$router.push("/");
         } catch (e) {
           // this.$error(`${e}`);
         }
@@ -105,5 +97,4 @@ export default defineComponent({
     };
   },
 });
-
 </script>

@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
+    "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.0",
@@ -40,12 +41,19 @@
     "babel-jest": "^27.0.6",
     "cypress": "^9.7.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.0.5",
+    "prettier": "^2.8.1",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "ts-jest": "^27.0.4",
     "typescript": "~4.5.5"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue}": "eslint --cache --fix --ext .js,.ts",
+    "*.{js,ts,tsx,css,md,yml,html,json,vue}": "prettier --write"
   }
 }

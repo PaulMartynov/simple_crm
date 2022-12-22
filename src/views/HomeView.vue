@@ -16,9 +16,9 @@
   </div>
 </template>
 <script>
-import { defineComponent } from 'vue';
-import UserBill from '@/components/UserBill.vue';
-import ExchangeRate from '@/components/ExchangeRate.vue';
+import { defineComponent } from "vue";
+import UserBill from "@/components/UserBill.vue";
+import ExchangeRate from "@/components/ExchangeRate.vue";
 
 export default defineComponent({
   components: { ExchangeRate, UserBill },
@@ -30,7 +30,7 @@ export default defineComponent({
     async getRates() {
       this.isLoading = true;
       try {
-        const data = await this.$store.dispatch('fetchRates');
+        const data = await this.$store.dispatch("fetchRates");
         console.log(data);
       } catch (e) {
         this.$error(`${e}`.replace('Error:', ''));

@@ -5,57 +5,37 @@
     </div>
 
     <form class="form">
-      <label for="category" class="input-field" >
+      <label for="category" class="input-field">
         Выберите категорию
         <select id="category">
-          <option
-          >name cat</option>
+          <option>name cat</option>
         </select>
       </label>
 
       <p>
         <label for="income-value">
-          <input
-            id="income-value"
-            class="with-gap"
-            name="type"
-            type="radio"
-            value="income"
-          />
+          <input id="income-value" class="with-gap" name="type" type="radio" value="income" />
           <span>Доход</span>
         </label>
       </p>
 
       <p>
         <label for="outcome-value">
-          <input
-            id="outcome-value"
-            class="with-gap"
-            name="type"
-            type="radio"
-            value="outcome"
-          />
+          <input id="outcome-value" class="with-gap" name="type" type="radio" value="outcome" />
           <span>Расход</span>
         </label>
       </p>
 
       <label for="amount" class="input-field">
         Сумма
-        <input
-          id="amount"
-          type="number"
-        >
+        <input id="amount" type="number" />
         <span class="helper-text invalid">amount пароль</span>
       </label>
 
       <label for="description" class="input-field">
         Описание
-        <input
-          id="description"
-          type="text"
-        >
-        <span
-          class="helper-text invalid">description пароль</span>
+        <input id="description" type="text" />
+        <span class="helper-text invalid">description пароль</span>
       </label>
 
       <button class="btn waves-effect waves-light" type="submit">

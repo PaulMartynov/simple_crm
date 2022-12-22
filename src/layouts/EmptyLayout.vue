@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import errorMessageMixin from '@/common/error.message.mixin';
+import errorMessageMixin from "@/common/error.message.mixin";
 
 export default {
   mixins: [errorMessageMixin],

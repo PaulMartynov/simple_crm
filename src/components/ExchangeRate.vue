@@ -7,19 +7,19 @@
         </div>
         <table v-if="currency">
           <thead>
-          <tr>
-            <th>Валюта</th>
-            <th>Курс</th>
-            <th>Дата</th>
-          </tr>
+            <tr>
+              <th>Валюта</th>
+              <th>Курс</th>
+              <th>Дата</th>
+            </tr>
           </thead>
 
           <tbody>
-          <tr>
-            <td>руб</td>
-            <td>12121</td>
-            <td>12.12.12</td>
-          </tr>
+            <tr>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+            </tr>
           </tbody>
         </table>
         <div class="row" style="width: 100%; text-align: center; margin-top: 100px" v-else>

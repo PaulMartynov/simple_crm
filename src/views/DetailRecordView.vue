@@ -3,9 +3,7 @@
     <div>
       <div class="breadcrumb-wrap">
         <router-link to="/history" class="breadcrumb">История</router-link>
-        <a class="breadcrumb">
-          Расход
-        </a>
+        <a class="breadcrumb"> Расход </a>
       </div>
       <div class="row">
         <div class="col s12 m6">

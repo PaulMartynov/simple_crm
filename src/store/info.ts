@@ -1,6 +1,6 @@
-import { UserInfo, UserStateInfo, VuexAction } from '@/types/vuex-type';
-import { ref, get } from 'firebase/database';
-import { database } from '@/api/firebase/firebase';
+import { UserInfo, UserStateInfo, VuexAction } from "@/types/vuex-type";
+import { ref, get } from "firebase/database";
+import { database } from "@/api/firebase/firebase";
 
 export default {
   state: {
@@ -16,13 +16,13 @@ export default {
   },
   actions: {
     async fetchUserInfo({ dispatch, commit }: VuexAction) {
-      const userID = await dispatch('getUserId');
+      const userID = await dispatch("getUserId");
       if (userID) {
         try {
           const infoData = await get(ref(database, `/users/${userID}/info`));
-          commit('setInfo', infoData.toJSON());
+          commit("setInfo", infoData.toJSON());
         } catch (err: any) {
-          commit('setError', err);
+          commit("setError", err);
           throw new Error(err.code);
         }
       }
